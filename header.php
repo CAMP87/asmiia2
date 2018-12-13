@@ -38,5 +38,14 @@
 
   </div>
 </nav>
+<nav class="menu">
+  <ul class="menu-list">
+      <li class="menu-list-item">Inicio</li>
+      <li class="menu-list-item">Publicaciones</li>
+      <li class="menu-list-item">Blog</li>
+      <li class="menu-list-item">Convocatoria</li>
+      <li class="menu-list-item">Contacto</li>
+  </ul>  
+</nav>
 
 <?php b4st_navbar_after();?>

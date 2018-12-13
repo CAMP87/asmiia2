@@ -1,0 +1,12 @@
+.menu{
+	background-color: blue;
+	.menu-list{
+	text-align: right;
+	list-style-type: none;
+	color:white;
+		.menu-list-item{
+			display: inline-block;
+			padding: .5rem 1rem;
+		}
+	}
+}
