@@ -3,45 +3,56 @@
     b4st_main_before();
 ?>
 <main>
+
+  <!-- Seccion del slideshow usando el loop. -->
   <section class="slider-wrap"> 
-    <div class="slider">
-      <?php
-        $args = array (
-          'posts_per_page' => 3,
-          'post_type' => array ('post','publicaciones'),
-          'order_by' => 'date',
-        );
-        $lequery = new WP_Query( $args );
-      ?>
-      <?php
-        if ( $lequery->have_posts() ) :
-      ?>
-    <div class="slide">
-      <?php
-        while ( $lequery->have_posts() ) : $lequery->the_post();
-      ?>
-      <div class="slides">
-        <div class="titul">
-          <h1 class="titul-slide"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
-        </div>
-        <div class="conte-s">
-          <p class="conte-slide"><?php the_excerpt(); ?></p>
-        </div>
-        <div class="imagen">
-          <?php the_post_thumbnail(); ?>
-        </div>
-        <div class="imagen_mobile">
-          <img src="<?php the_field('imagen_mobile');?>" alt="">
-        </div>  
-      </div>
-    <?php
-    endwhile;
-    endif;
-  // Reset Post Data
-    wp_reset_postdata();
-  ?>
-    </div>
+      <div>
+          
+          <!-- arreglo que muestra los argumentos que se tomaran en cuenta para el slideshow. -->
+          <?php
+            $args = array (
+              'posts_per_page' => 3, // Muetra los ultimos 3 post.
+              'post_type' => array ('post'), // Muestra el tipo de post mostrara.
+              'order_by' => 'date', //Muestra el orden en el cual seran ordenados.
+            );
+            
+            $postSlide = new WP_Query( $args );
+          ?>
+
+          <?php
+              if ( $postSlide->have_posts() ) :
+          ?>
+
+              <div class="slider">
+                <?php
+                  while ( $postSlide->have_posts() ) : $postSlide->the_post();
+                ?>
+                <div class="contenidoSlide">
+                    
+                    <div class="tituloSlide">
+                        <h1 class="postSlide"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
+                    </div>
+
+                    <div class="excerptSlide">
+                        <p class="parrafoSlide"><?php the_excerpt(); ?></p>
+                    </div>
+                    
+                    <?php the_post_thumbnail(); ?>
+                </div>
+
+          <?php
+               endwhile;
+               endif;
+               // Reset Post Data
+               wp_reset_postdata();
+          ?>
+
+          </div>
+      </div> 
+
   </section>
+
+
   <section class="quienes">
     <div class="quienes-intro">
       <h1>¿Quienes somos?</h1>
